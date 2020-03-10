@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import * as React from 'react';
-import * as Update from 'immutability-helper';
+import Update from 'immutability-helper';
 import styles from './CRManagementTeamSection.module.scss';
 import { ICRManagementTeamSectionProps } from './ICRManagementTeamSectionProps';
 import { ICRManagementTeamSectionState } from './ICRManagementTeamSectionState';
@@ -91,7 +91,7 @@ export default class CRManagementTeamSection extends React.Component<ICRManageme
                       <div className={styles.formHeader}>Status Updates:</div>
                     </div>
                     <div className={css('ms-Grid-col ms-u-sm8')}>
-                      <TextField multiline autoAdjustHeight value = { triagecomments } onChanged = {this._handleTriagecommentsChanged.bind(this)} />
+                      <TextField multiline autoAdjustHeight value = { triagecomments } onChange = {this._handleTriagecommentsChanged.bind(this)} />
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ export default class CRManagementTeamSection extends React.Component<ICRManageme
                         id='Basicdrop1'
                         options={this._buildDropdownOptions()}
                         selectedKey = { item ? item.substatus : "" }
-                        onChanged = {this._handleSubstatusChanged.bind(this)} />
+                        onChange = {this._handleSubstatusChanged.bind(this)} />
                     </div>
                   </div>
                   <div className={css('ms-Grid-row')}>
@@ -184,9 +184,9 @@ export default class CRManagementTeamSection extends React.Component<ICRManageme
     return options;
   }
 
-  private _handleTriagecommentsChanged(value: string) {
+  private _handleTriagecommentsChanged(e: React.ChangeEvent<HTMLInputElement>) {
     let {item} = this.state;
-    item.triagecomments = value;
+    item.triagecomments = e.target.value;
 
     this.setState(
       Update(this.state, {

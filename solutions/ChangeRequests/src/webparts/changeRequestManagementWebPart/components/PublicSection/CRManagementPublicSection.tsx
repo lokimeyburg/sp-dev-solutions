@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import * as React from 'react';
-import * as Update from 'immutability-helper';
+import Update from 'immutability-helper';
 import * as moment from 'moment';
 import styles from './CRManagementPublicSection.module.scss';
 import { ICRManagementPublicSectionProps } from './ICRManagementPublicSectionProps';
@@ -51,7 +51,7 @@ export default class CRManagementPublicSection extends React.Component<ICRManage
                       <div className={styles.formHeader}>Description:</div>
                     </div>
                     <div className={css('ms-Grid-col ms-u-sm8')}>
-                      <TextField multiline autoAdjustHeight value = { description } onChanged = { this._handleDescriptionChanged.bind(this) } />
+                      <TextField multiline autoAdjustHeight value = { description } onChange = { this._handleDescriptionChanged.bind(this) } />
                     </div>
                   </div>
                   <div className={css('ms-Grid-row')}>
@@ -59,7 +59,7 @@ export default class CRManagementPublicSection extends React.Component<ICRManage
                     <div className={styles.formHeader}>Last Update:</div>
                     </div>
                     <div className={css('ms-Grid-col ms-u-sm8')}>
-                      <TextField multiline autoAdjustHeight value = { item.statusupdates? item.statusupdates: "" } onChanged = { this._handleLastUpdatesChanged.bind(this) } />
+                      <TextField multiline autoAdjustHeight value = { item.statusupdates? item.statusupdates: "" } onChange = { this._handleLastUpdatesChanged.bind(this) } />
                     </div>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ export default class CRManagementPublicSection extends React.Component<ICRManage
                         id='Basicdrop1'
                         options={this._buildDropdownOptions(this.props.statusItems)}
                         selectedKey = { item.status }
-                        onChanged = {this._handleStatusChanged.bind(this)}
+                        onChange = {this._handleStatusChanged.bind(this)}
                       />
                     </div>
                   </div>
@@ -116,9 +116,9 @@ export default class CRManagementPublicSection extends React.Component<ICRManage
     return options;
   }
 
-  private _handleDescriptionChanged(value: string) {
+  private _handleDescriptionChanged(e: React.ChangeEvent<HTMLInputElement>) {
     let {item} = this.state;
-    item.description = value;
+    item.description = e.target.value;
     this.setState(
       Update(this.state, {
         item: {
@@ -142,9 +142,9 @@ export default class CRManagementPublicSection extends React.Component<ICRManage
     this.props.itemChangeHandler("IMyChangeRequestItem", this.state.item);
   }
 
-  private _handleLastUpdatesChanged(value: string) {
+  private _handleLastUpdatesChanged(e: React.ChangeEvent<HTMLInputElement>) {
     let {item} = this.state;
-    item.statusupdates = value;
+    item.statusupdates = e.target.value;
     this.setState(
       Update(this.state, {
         item: {

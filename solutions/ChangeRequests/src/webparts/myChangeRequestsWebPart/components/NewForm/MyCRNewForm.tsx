@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Update from 'immutability-helper';
+import Update from 'immutability-helper';
 import * as lodash from '@microsoft/sp-lodash-subset';
 import { css, Label, TextField, Dialog, DialogType, DialogFooter, PrimaryButton, DefaultButton } from 'office-ui-fabric-react';
 import IMyCRNewFormProps from './IMyCRNewFormProps';
@@ -63,13 +63,13 @@ export default class MyCRNewDialog extends React.Component<IMyCRNewFormProps, IM
                         <div className="ms-Grid-row">
                             <div className={`ms-Grid-col ${styles.mycrnewformcell} ms-u-sm12 ms-u-lg3`}>Title:</div>
                             <div className="ms-Grid-col ms-u-sm12 ms-u-lg9">
-                                <TextField value={this.state.item.title} onChanged={this._handleTitleChange.bind(this)} />
+                                <TextField value={this.state.item.title} onChange={this._handleTitleChange.bind(this)} />
                             </div>
                         </div>
                         <div className="ms-Grid-row" >
                             <div className={`ms-Grid-col ${styles.mycrnewformcell} ms-u-sm12 ms-u-lg3`}>Description:</div>
                             <div className="ms-Grid-col ms-u-sm12 ms-u-lg9">
-                                <TextField value={this.state.item.description} multiline resizable={false} onChanged={this._handleDescriptionChange.bind(this)} />
+                                <TextField value={this.state.item.description} multiline resizable={false} onChange={this._handleDescriptionChange.bind(this)} />
                             </div>
                         </div>
                         <div className="ms-Grid-row" hidden={this.state.isNewForm}>
@@ -115,23 +115,25 @@ export default class MyCRNewDialog extends React.Component<IMyCRNewFormProps, IM
         }
         this._resetItem();
     }
-    private _handleTitleChange(text: string) {
+    private _handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        var val = e.target.value;
         this.setState(
             Update(this.state, {
                 item: {
                     title: {
-                        $set: text
+                        $set: val
                     }
                 }
             })
         );
     }
-    private _handleDescriptionChange(text: string) {
+    private _handleDescriptionChange(e: React.ChangeEvent<HTMLInputElement>) {
+        var val = e.target.value;
         this.setState(
             Update(this.state, {
                 item: {
                     description: {
-                        $set: text
+                        $set: val
                     }
                 }
             })

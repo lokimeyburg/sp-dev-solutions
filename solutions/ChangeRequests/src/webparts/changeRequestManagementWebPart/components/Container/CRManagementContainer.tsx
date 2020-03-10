@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import * as React from 'react';
-import * as Update from 'immutability-helper';
+import Update from 'immutability-helper';
 import { css, Label, PrimaryButton, CommandButton, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
@@ -43,6 +43,7 @@ export default class ChangeRequestManagementContainer extends React.Component<IC
       status: [],
       allTriageUsers: [],
       allPersons: [],
+      createdBy: null,
       loading: true,
       showModal: false
     };
@@ -164,16 +165,6 @@ export default class ChangeRequestManagementContainer extends React.Component<IC
               </div>
             </div>
           </Modal>
-          { 
-            this.props.displayMode != 1 ?
-            <div className={styles.brandArea}>
-              <a className={styles.brandContent} href="https://aka.ms/sppnpsolutions">
-                <span className={styles.iconArea}><i className={`ms-Icon ms-Icon--SharepointLogo`} aria-hidden="true"></i></span>
-                <span>SharePoint Patterns and Practices Community Solutions</span>
-              </a>
-            </div> : 
-            <div></div> 
-          }
         </div>
       );
     } else {

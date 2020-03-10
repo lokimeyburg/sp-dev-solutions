@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Update from 'immutability-helper';
+import Update from 'immutability-helper';
 import { css, Label, PrimaryButton, CommandButton, FocusZone, FocusZoneDirection, List } from 'office-ui-fabric-react';
 import IMyCRListProps from './IMyCRListProps';
 import styles from './MyCRList.module.scss';
